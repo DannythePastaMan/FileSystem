@@ -41,6 +41,7 @@ void Disk::readDisk(dataTyping File_Entry, char name[30])
         cout << File_Entry.day << "/";
         cout << File_Entry.month << "/";
         cout << File_Entry.year << endl;
+        cout << endl;
         disk.read(reinterpret_cast<char *>(&File_Entry), sizeof(dataTyping));
     }
 
@@ -75,9 +76,3 @@ void Disk::addData(char name[30])
     pos++;
 
 }
-
-
-
-
-
-
