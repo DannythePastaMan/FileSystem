@@ -3,22 +3,24 @@
 
 #include <iostream>
 
-struct dataTyping
+struct inode_entry
 {
     char name[30];
     char type[1];
     int day, month, year;
-    double size = sizeof(dataTyping);
-
+    unsigned int lvl1, lvl2, lvl3;
+    unsigned int dirP[12];
+    unsigned int indirP1, indirP2, indirP3;
 };
 
 class Disk
 {
 public:
     Disk();
-    void writeDisk(dataTyping, char []);
-    void readDisk(dataTyping, char[]);
+    void writeDisk(inode_entry, char []);
+    void readDisk(inode_entry, char[]);
     void addData(char []);
+    void importFile(std::string );
 
 };
 

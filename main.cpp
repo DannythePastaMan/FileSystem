@@ -6,7 +6,8 @@ using namespace std;
 int main(){
     Disk d;
     int opc = 0;
-    dataTyping dt;
+    inode_entry dt;
+    
 do{    
     cout << "-|-|-|-|-|-File System-|-|-|-|-|-\n      by Daniel Zavala~" << endl;
     char name2[30] = "System.bin";

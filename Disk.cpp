@@ -14,7 +14,7 @@ Disk::Disk()
 
 }
 
-void Disk::writeDisk(dataTyping File_Entry, char name[30])
+void Disk::writeDisk(inode_entry File_Entry, char name[30])
 {
     ofstream disk(name, ios::binary | ios::out | ios::app);
     strcpy(File_Entry.type, "");
@@ -22,17 +22,17 @@ void Disk::writeDisk(dataTyping File_Entry, char name[30])
     File_Entry.day = -1;
     File_Entry.month = -1;
     File_Entry.year = -1;
-    disk.write(reinterpret_cast<char*>(&File_Entry), sizeof(dataTyping));
+    disk.write(reinterpret_cast<char*>(&File_Entry), sizeof(inode_entry));
     disk.close();
 
 }
 
-void Disk::readDisk(dataTyping File_Entry, char name[30])
+void Disk::readDisk(inode_entry File_Entry, char name[30])
 {
     ifstream disk(name, ios::in | ios::binary);
     disk.seekg(0, ios::beg);
-    int size = sizeof(dataTyping);
-    disk.read(reinterpret_cast<char *>(&File_Entry), sizeof(dataTyping));
+    int size = sizeof(inode_entry);
+    disk.read(reinterpret_cast<char *>(&File_Entry), sizeof(inode_entry));
 
     while(!disk.eof())
     {
@@ -42,7 +42,7 @@ void Disk::readDisk(dataTyping File_Entry, char name[30])
         cout << File_Entry.month << "/";
         cout << File_Entry.year << endl;
         cout << endl;
-        disk.read(reinterpret_cast<char *>(&File_Entry), sizeof(dataTyping));
+        disk.read(reinterpret_cast<char *>(&File_Entry), sizeof(inode_entry));
     }
 
     disk.close();
@@ -51,8 +51,8 @@ void Disk::readDisk(dataTyping File_Entry, char name[30])
 void Disk::addData(char name[30])
 {
     fstream disk(name, ios::in | ios::out | ios::binary | ios::app);
-    disk.seekp((pos) * sizeof(dataTyping), ios::beg);
-    dataTyping dt;
+    disk.seekp((pos) * sizeof(inode_entry), ios::beg);
+    inode_entry dt;
 
     cout << "Ingrese nombre del archivo: ";
     cin >> dt.name;
@@ -69,7 +69,7 @@ void Disk::addData(char name[30])
     cout << "Year: ";
     cin >> dt.year;
 
-    disk.write(reinterpret_cast<char *>(&dt), sizeof(dataTyping));
+    disk.write(reinterpret_cast<char *>(&dt), sizeof(inode_entry));
     cout << "Archivo guardado en el disco!" << endl;
 
     disk.close();
