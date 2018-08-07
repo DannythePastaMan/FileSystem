@@ -53,6 +53,10 @@ void Disk::addData(char name[30])
     fstream disk(name, ios::in | ios::out | ios::binary | ios::app);
     disk.seekp((pos) * sizeof(inode_entry), ios::beg);
     inode_entry dt;
+    SuperBlock sb;
+    BootBlock bb;
+    DBCluster dbc;
+    DataBlocks db;
 
     cout << "Ingrese nombre del archivo: ";
     cin >> dt.name;
@@ -70,7 +74,12 @@ void Disk::addData(char name[30])
     cin >> dt.year;
 
     disk.write(reinterpret_cast<char *>(&dt), sizeof(inode_entry));
-    cout << "Archivo guardado en el disco!" << endl;
+    disk.write(reinterpret_cast<char *>(&sb), sizeof(SuperBlock));
+    disk.write(reinterpret_cast<char *>(&bb), sizeof(BootBlock));
+    disk.write(reinterpret_cast<char *>(&dbc), sizeof(DBCluster));
+    disk.write(reinterpret_cast<char *>(&db), sizeof(DataBlocks));
+
+    cout << "Data Saved" << endl;
 
     disk.close();
     pos++;

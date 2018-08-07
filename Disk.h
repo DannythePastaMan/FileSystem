@@ -11,6 +11,7 @@ struct inode_entry
     unsigned int lvl1, lvl2, lvl3;
     unsigned int dirP[12];
     unsigned int indirP1, indirP2, indirP3;
+    unsigned int brother;
 };
 
 class Disk
@@ -23,5 +24,30 @@ public:
     void importFile(std::string );
 
 };
+
+struct DataBlocks
+{
+    char arr[4092];
+    int next;
+    int first;
+};
+
+struct DBCluster
+{
+    DataBlocks cluster[100];
+};
+
+struct SuperBlock
+{
+    unsigned int inodeQuant;
+    unsigned int numBlocks;
+    unsigned int numFreeBlocks;
+};
+
+struct BootBlock
+{
+    unsigned int size[1024];
+};
+
 
 #endif // DISK_H
