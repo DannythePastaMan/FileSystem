@@ -10,7 +10,7 @@ int main(){
     
 do{    
     cout << "-|-|-|-|-|-File System-|-|-|-|-|-\n      by Daniel Zavala~" << endl;
-    char name2[30] = "System.bin";
+    char name2[30] = "ROOT.bin";
 
     cout << "Available commands: \n1. mkdir\n2. ls(only works for System.bin)\n3. Create disk." << endl;
     cout << "Choose command: ";
